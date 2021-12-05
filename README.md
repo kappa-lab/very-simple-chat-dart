@@ -1,1 +1,2 @@
-# very-simple-chat-dart
+- `dart ./main.dart`
+- open main.dart and Ctrl+Enter
