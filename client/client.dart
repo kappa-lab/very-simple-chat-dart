@@ -1,6 +1,8 @@
 import "dart:io";
 import "dart:async";
 
+import '../protocol/protocol.dart';
+
 const int PORT = 8080;
 
 void main() {
@@ -8,7 +10,7 @@ void main() {
   Future<Socket> fs = Socket.connect("localhost", PORT);
   fs.then((Socket s) {
     stdin.listen((List<int> data) => parseInput(data, s));
-    s.listen((data) => print(new String.fromCharCodes(data)));
+    s.listen((data) => print(new String.fromCharCodes(Protocol.Read(data))));
     Future.delayed(const Duration(seconds: 1), () {
       sendGreeting(s);
     });

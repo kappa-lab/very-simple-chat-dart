@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:ffi';
 import "dart:io";
-import "dart:async";
 
 import 'dart:typed_data';
+
+import 'protocol/protocol.dart';
 
 const int PORT = 8080;
 
@@ -19,7 +19,7 @@ void startServer() {
 void initConnection(Socket socket) {
   print("[Init Connection] ---> ");
   var greetingMessage = {"connId": 1, "roomId": 1, "member": []};
-  socket.add(jsonEncode(greetingMessage).codeUnits);
+  Protocol.Write(socket, jsonEncode(greetingMessage).codeUnits);
 
   socket.listen(
     (data) {
