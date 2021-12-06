@@ -14,7 +14,7 @@ class Protocol {
   }
 
   static void Write(Socket socket, List<int> body) {
-    var data = [body.length]..addAll(body);
+    final data = [body.length]..addAll(body);
     socket.add(data);
   }
 }
